@@ -57,6 +57,7 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If the account does not exist
 	 */
 	public void deposit(String accountid, Money money) throws AccountDoesNotExistException {
+		//switched 'if' and 'else' statements
 		if (accountlist.containsKey(accountid)) {
 			Account account = accountlist.get(accountid);
 			account.deposit(money);
