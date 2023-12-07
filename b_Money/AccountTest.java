@@ -20,7 +20,8 @@ public class AccountTest {
 		testAccount.deposit(new Money(10000000.0, SEK));
 		SweBank.deposit("Alice", new Money(10000000.0, SEK));
 	}
-	
+
+	//Checking if add timed payment works for both the sender and receiver
 	@Test
 	public void testAddRemoveTimedPayment() throws AccountDoesNotExistException {
 		testAccount.addTimedPayment("1", 1, 0, new Money(1000000.0, SEK), SweBank, "Alice");
@@ -36,12 +37,13 @@ public class AccountTest {
 		fail("Write test case here");
 	}
 
+	//Checking if withdrawing and depositing works
 	@Test
 	public void testAddWithdraw() {
-		//to negative value
+		//from positive to negative value
 		testAccount.withdraw(new Money(17000000.0, SEK));
 		assertTrue(new Money(-7000000.0, SEK).equals(testAccount.getBalance()));
-		//set to zero
+		//from negative set to zero
 		testAccount.deposit(new Money(7000000.0, SEK));
 		assertTrue(new Money(0.0, SEK).equals(testAccount.getBalance()));
 	}
