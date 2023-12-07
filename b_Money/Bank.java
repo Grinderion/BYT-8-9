@@ -33,6 +33,13 @@ public class Bank {
 	public Currency getCurrency() {
 		return currency;
 	}
+
+	/**
+	 * Get accountList of this bank
+	 * @return The accountList of this bank
+	 */
+	//added to have easier testing
+	public Hashtable<String, Account> getAccountList(){return accountlist;}
 	
 	/**
 	 * Open an account at this bank.
