@@ -38,6 +38,14 @@ public class BankTest {
 
 	@Test
 	public void testOpenAccount() throws AccountExistsException, AccountDoesNotExistException {
+	Hashtable<String, Account> accountList = SweBank.getAccountList();
+		if (accountList.containsKey("Ulrika")) {
+			assertTrue(!(accountList.get("Ulrika") == null));
+		}
+		else {
+			throw new AccountDoesNotExistException();
+		}
+
 	}
 
 	@Test
