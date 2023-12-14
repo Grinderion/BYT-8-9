@@ -25,14 +25,16 @@ public class CurrencyTest {
 		assertEquals("DKK Name Test", "DKK", DKK.getName());
 		assertEquals("EUR Name Test", "EUR", EUR.getName());
 	}
-	
+
+	//Basic getter Test
 	@Test
 	public void testGetRate() {
 		assertEquals("Name Test 1", 0.15, SEK.getRate(), 0.001);
 		assertEquals("Name Test 2", 0.20, DKK.getRate(), 0.001);
 		assertEquals("Name Test 3", 1.5, EUR.getRate(), 0.001);
 	}
-	
+
+	//Basic setter test
 	@Test
 	public void testSetRate() {
 		EUR.setRate(2.0);
@@ -54,6 +56,8 @@ public class CurrencyTest {
 		assertEquals("Universal Value Test 5", -47.12, DKK.universalValue(-235.6), 0.001);
 
 	}
+
+	//Testing changing currencies
 	@Test
 	public void testValueInThisCurrency() {
 		//Test for positive value

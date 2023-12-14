@@ -5,9 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Hashtable;
+
 public class BankTest {
 	Currency SEK, DKK;
 	Bank SweBank, Nordea, DanskeBank;
+	Money SEK100, SEKm100;
+	Hashtable<String, Account> accountList;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -20,15 +24,19 @@ public class BankTest {
 		SweBank.openAccount("Bob");
 		Nordea.openAccount("Bob");
 		DanskeBank.openAccount("Gertrud");
+		SEK100 = new Money(10000.0, SEK);
+		SEKm100 = new Money(-10000.0, SEK);
+		accountList = SweBank.getAccountList();
 	}
 
+	//simple getter test
 	@Test
 	public void testGetName() {
-		//simple getter test
 		assertEquals("SweBank", SweBank.getName());
 		assertEquals("Nordea", Nordea.getName());
 	}
 
+	//getCurrency test
 	@Test
 	public void testGetCurrency() {
 		//simple getter test
@@ -36,8 +44,8 @@ public class BankTest {
 		assertEquals(DKK, DanskeBank.getCurrency());
 	}
 
-	@Test
 	//Checking whether opening account works properly
+	@Test
 	public void testOpenAccount() throws AccountExistsException, AccountDoesNotExistException {
 	Hashtable<String, Account> accountList = SweBank.getAccountList();
 		if (accountList.containsKey("Ulrika")) {
@@ -49,28 +57,39 @@ public class BankTest {
 
 	}
 
+	//deposit test
 	@Test
 	public void testDeposit() throws AccountDoesNotExistException {
-		fail("Write test case here");
+		SweBank.deposit("Ulrika", SEK100);
+		assertTrue(SEK100.equals(accountList.get("Ulrika").getBalance()));
 	}
 
+	//withdraw test
 	@Test
 	public void testWithdraw() throws AccountDoesNotExistException {
-		fail("Write test case here");
+		SweBank.withdraw("Ulrika", SEKm100);
+		assertTrue(SEKm100.equals(accountList.get("Ulrika").getBalance()));
 	}
-	
+
+	//getBalance test
 	@Test
 	public void testGetBalance() throws AccountDoesNotExistException {
-		fail("Write test case here");
+		SweBank.deposit("Ulrika", SEK100);
+		assertTrue(SEK100.equals(accountList.get("Ulrika").getBalance()));
 	}
-	
+
+	//transfer test
 	@Test
 	public void testTransfer() throws AccountDoesNotExistException {
-		fail("Write test case here");
+		SweBank.transfer("Ulrika", "Bob", SEK100);
+		assertTrue(SEK100.equals(accountList.get("Bob").getBalance()));
 	}
-	
+
+	//timedPayment test
 	@Test
 	public void testTimedPayment() throws AccountDoesNotExistException {
-		fail("Write test case here");
+		SweBank.addTimedPayment("Ulrika", "1", 0, 0, SEK100, SweBank, "Bob");
+		SweBank.tick();
+		assertTrue(SEK100.equals(accountList.get("Bob").getBalance()));
 	}
 }

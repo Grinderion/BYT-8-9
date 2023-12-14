@@ -23,6 +23,7 @@ public class MoneyTest {
 		SEKn100 = new Money((double) -10000, SEK);
 	}
 
+	//GetAmount test
 	@Test
 	public void testGetAmount() {
 		assertEquals("Get Amount Test 1",10000.0, SEK100.getAmount(), 0.001);
@@ -33,6 +34,7 @@ public class MoneyTest {
 		assertEquals("Get Amount Test 6",2000.0, EUR20.getAmount(), 0.001);
 	}
 
+	//GetCurrencyTest
 	@Test
 	public void testGetCurrency() {
 		//assignment Tests
@@ -44,6 +46,7 @@ public class MoneyTest {
 		assertFalse(EUR0.getCurrency() == SEK0.getCurrency());
 	}
 
+	//toString Test
 	@Test
 	public void testToString() {
 		//for 0
@@ -54,6 +57,7 @@ public class MoneyTest {
 		assertEquals("toString Test2", "1000.0 EUR", EUR10.toString());
 	}
 
+	//globalValue test
 	@Test
 	public void testGlobalValue() {
 		//was already mostly tested in currency tests
@@ -62,6 +66,7 @@ public class MoneyTest {
 		assertEquals("Global Value Test2", -1500.0, SEKn100.universalValue(), 0.001);
 	}
 
+	//equalsMoney test
 	@Test
 	public void testEqualsMoney() {
 		// One test for false and two for true (zero and non-zero)
@@ -70,6 +75,7 @@ public class MoneyTest {
 		assertTrue(SEK0.equals(EUR0));
 	}
 
+	//add test
 	@Test
 	public void testAdd() {
 		//simple addition tests
@@ -78,6 +84,7 @@ public class MoneyTest {
 		assertFalse(money1.equals(EUR10.add(SEK200)));
 	}
 
+	//sub test
 	@Test
 	public void testSub() {
 		//simple substraction tests
@@ -86,6 +93,7 @@ public class MoneyTest {
 		assertFalse(money1.equals(EUR10.sub(SEK200)));
 	}
 
+	//isZero test
 	@Test
 	public void testIsZero() {
 		//simple true and false case
@@ -93,6 +101,7 @@ public class MoneyTest {
 		assertTrue(EUR0.isZero());
 	}
 
+	//negate test
 	@Test
 	public void testNegate() {
 		//best way to check is to compare
@@ -103,6 +112,7 @@ public class MoneyTest {
 		assertFalse(EUR20.equals(SEKn100.negate()));
 	}
 
+	//compareTo test
 	@Test
 	public void testCompareTo() {
 		//one case of each possibility

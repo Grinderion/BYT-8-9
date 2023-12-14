@@ -133,7 +133,8 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If one of the accounts do not exist
 	 */
 	public void transfer(String fromaccount, String toaccount, Money amount) throws AccountDoesNotExistException {
-		transfer(fromaccount, this, fromaccount, amount);
+		//had to change fromaccount to toaccount in the third variable
+		transfer(fromaccount, this, toaccount, amount);
 	}
 
 	/**
